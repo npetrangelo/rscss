@@ -15,13 +15,15 @@ impl From<Flexbox> for String {
     }
 }
 
-pub enum Direction { Row, Column }
+pub enum Direction { Row, Column, RowReverse, ColumnReverse }
 
 impl From<Direction> for String {
     fn from(direction: Direction) -> Self {
         format!("flex-direction: {};", match direction {
             Direction::Row => "row",
-            Direction::Column => "column"
+            Direction::Column => "column",
+            Direction::RowReverse => "row-reverse",
+            Direction::ColumnReverse => "column-reverse"
         })
     }
 }
