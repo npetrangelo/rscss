@@ -38,13 +38,21 @@ impl From<Alignment> for String {
 }
 
 pub enum Justify {
-    Center
+    Start,
+    Center,
+    SpaceBetween,
+    SpaceAround,
+    SpaceEvenly
 }
 
 impl From<Justify> for String {
     fn from(justify: Justify) -> Self {
         format!("justify-content: {};", match justify {
-            Justify::Center => "center"
+            Justify::Start => "start",
+            Justify::Center => "center",
+            Justify::SpaceBetween => "space-between",
+            Justify::SpaceAround => "space-around",
+            Justify::SpaceEvenly => "space-evenly"
         })
     }
 }
