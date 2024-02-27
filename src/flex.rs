@@ -1,6 +1,6 @@
 pub struct Flexbox {
     pub direction: Direction,
-    pub align_items: Alignment,
+    pub align_items: AlignItems,
     pub justify_content: Justify,
     pub wrap: Wrap
 }
@@ -27,14 +27,20 @@ impl From<Direction> for String {
         })
     }
 }
-pub enum Alignment {
-    Center
+pub enum AlignItems {
+    Stretch,
+    Center,
+    Start,
+    End
 }
 
-impl From<Alignment> for String {
-    fn from(alignment: Alignment) -> Self {
+impl From<AlignItems> for String {
+    fn from(alignment: AlignItems) -> Self {
         format!("align-items: {};", match alignment {
-            Alignment::Center => "center"
+            AlignItems::Stretch => "stretch",
+            AlignItems::Center => "center",
+            AlignItems::Start => "start",
+            AlignItems::End => "end"
         })
     }
 }

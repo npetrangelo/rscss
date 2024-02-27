@@ -8,7 +8,7 @@ pub fn add(left: usize, right: usize) -> usize {
 
 #[cfg(test)]
 mod tests {
-    use crate::flex::{Alignment, Direction, Flexbox, Justify, Wrap};
+    use crate::flex::{AlignItems, Direction, Flexbox, Justify, Wrap};
     use super::*;
 
     #[test]
@@ -23,7 +23,7 @@ mod tests {
             display: Some(Display::Flex(
                 Flexbox {
                     direction: Direction::Row,
-                    align_items: Alignment::Center,
+                    align_items: AlignItems::Center,
                     justify_content: Justify::Center,
                     wrap: Wrap::NoWrap,
                 }
