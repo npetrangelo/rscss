@@ -66,13 +66,17 @@ impl From<Justify> for String {
 }
 
 pub enum Wrap {
-    NoWrap
+    NoWrap,
+    Wrap,
+    WrapReverse
 }
 
 impl From<Wrap> for String {
     fn from(wrap: Wrap) -> Self {
         format!("flex-wrap: {};", match wrap {
-            Wrap::NoWrap => "nowrap"
+            Wrap::NoWrap => "nowrap",
+            Wrap::Wrap => "wrap",
+            Wrap::WrapReverse => "wrap-reverse"
         })
     }
 }
