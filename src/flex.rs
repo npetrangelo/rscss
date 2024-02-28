@@ -1,21 +1,40 @@
+#[cfg(test)]
+mod tests {
+    use crate::flex::{Direction, Flexbox, Wrap};
+
+    #[test]
+    fn test_flex() {
+        let style: String = Flexbox {
+            direction: Direction::Row,
+            wrap: Wrap::NoWrap,
+        }.into();
+        let css = "display: flex; \
+        flex-direction: row; \
+        flex-wrap: nowrap;";
+        assert_eq!(style, css);
+    }
+}
+
 pub struct Flexbox {
     pub direction: Direction,
-    pub align_items: AlignItems,
-    pub justify_content: Justify,
     pub wrap: Wrap
 }
 
 impl From<Flexbox> for String {
     fn from(flex: Flexbox) -> Self {
-        format!("display: flex; {} {} {} {}",
+        format!("display: flex; {} {}",
                 String::from(flex.direction),
-                String::from(flex.align_items),
-                String::from(flex.justify_content),
                 String::from(flex.wrap))
     }
 }
 
 pub enum Direction { Row, Column, RowReverse, ColumnReverse }
+
+impl Default for Direction {
+    fn default() -> Self {
+        Self::Row
+    }
+}
 
 impl From<Direction> for String {
     fn from(direction: Direction) -> Self {
@@ -27,48 +46,17 @@ impl From<Direction> for String {
         })
     }
 }
-pub enum AlignItems {
-    Stretch,
-    Center,
-    Start,
-    End
-}
-
-impl From<AlignItems> for String {
-    fn from(alignment: AlignItems) -> Self {
-        format!("align-items: {};", match alignment {
-            AlignItems::Stretch => "stretch",
-            AlignItems::Center => "center",
-            AlignItems::Start => "start",
-            AlignItems::End => "end"
-        })
-    }
-}
-
-pub enum Justify {
-    Start,
-    Center,
-    SpaceBetween,
-    SpaceAround,
-    SpaceEvenly
-}
-
-impl From<Justify> for String {
-    fn from(justify: Justify) -> Self {
-        format!("justify-content: {};", match justify {
-            Justify::Start => "start",
-            Justify::Center => "center",
-            Justify::SpaceBetween => "space-between",
-            Justify::SpaceAround => "space-around",
-            Justify::SpaceEvenly => "space-evenly"
-        })
-    }
-}
 
 pub enum Wrap {
     NoWrap,
     Wrap,
     WrapReverse
+}
+
+impl Default for Wrap {
+    fn default() -> Self {
+        Self::NoWrap
+    }
 }
 
 impl From<Wrap> for String {
